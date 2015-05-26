@@ -1,4 +1,4 @@
-class Rectangle
+class Square
   attr_accessor :point1, :point2, :point3, :point4
 
   def self.new point1, point2, point3, point4
@@ -11,7 +11,8 @@ class Rectangle
       (Line.orthogonal? line1, line2) and
       (Line.orthogonal? line3, line4) and
       (line1.length == line3.length) and
-      (line2.length == line4.length)
+      (line2.length == line4.length) and
+      (line1.length == line4.length)
     )
     super
   end
@@ -24,14 +25,12 @@ class Rectangle
   end
 
   def area
-    line1 = Line.new @point1, @point2
-    line2 = Line.new @point2, @point3
-    return line1.length * line2.length
+    line = Line.new @point1, @point2
+    return line.length**2
   end
 
   def perimeter
-    line1 = Line.new @point1, @point2
-    line2 = Line.new @point2, @point3
-    return 2 * (line1.length + line2.length)
+    line = Line.new @point1, @point2
+    return 4 * (line.length)
   end
 end

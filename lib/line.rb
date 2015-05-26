@@ -1,6 +1,11 @@
 class Line
   attr_accessor :start_point, :end_point
-  
+
+  def self.new start_point, end_point
+    return nil unless (Point.equal? start_point, end_point) == false
+    super
+  end
+
   def initialize start_point, end_point
     @start_point = Point.new start_point.x, start_point.y
     @end_point = Point.new end_point.x, end_point.y
