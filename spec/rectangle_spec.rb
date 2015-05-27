@@ -6,7 +6,7 @@ describe 'Rectangle' do
     pivot = Point.new 0, 0
     length = 10
     breadth = 20
-    rectangle= Rectangle.new pivot, length, breadth
+    rectangle= Rectangle.new_with_sides pivot, length, breadth
     expect(Point.equal? rectangle.point1, pivot).to eq(true)
     expect(Point.equal? rectangle.point2, Point.new(10, 0)).to eq(true)
     expect(Point.equal? rectangle.point3, Point.new(10, 20)).to eq(true)

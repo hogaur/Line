@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe 'Square' do
+  it 'should declare a square with pivot and one side' do
+    pivot = Point.new 0,0
+    side = 10
+    square = Square.new_with_sides pivot, side
+    expect(Point.equal? square.point1, pivot).to eq(true)
+    expect(Point.equal? square.point2, Point.new(pivot.x + side, pivot.y)).to eq(true)
+    expect(Point.equal? square.point3, Point.new(pivot.x + side, pivot.y + side)).to eq(true)
+    expect(Point.equal? square.point4, Point.new(pivot.x, pivot.y + side)).to eq(true)
+  end
+  
   it 'should declare a square with four points' do
     point1 = Point.new 0, 0
     point2 = Point.new 2, 0
