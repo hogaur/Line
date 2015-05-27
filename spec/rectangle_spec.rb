@@ -1,6 +1,18 @@
 require 'spec_helper'
 
 describe 'Rectangle' do
+
+  it 'should declare a rectangle with a pivot and two lengths' do
+    pivot = Point.new 0, 0
+    length = 10
+    breadth = 20
+    rectangle= Rectangle.new pivot, length, breadth
+    expect(Point.equal? rectangle.point1, pivot).to eq(true)
+    expect(Point.equal? rectangle.point2, Point.new(10, 0)).to eq(true)
+    expect(Point.equal? rectangle.point3, Point.new(10, 20)).to eq(true)
+    expect(Point.equal? rectangle.point4, Point.new(0, 20)).to eq(true)
+  end
+
   it 'should declare a rectangle with four points' do
     point1 = Point.new 0, 0
     point2 = Point.new 2, 0
