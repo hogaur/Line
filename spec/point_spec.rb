@@ -28,7 +28,8 @@ describe 'Point' do
     it 'should return the distance' do
       point1=Point.new 1,1
       point2=Point.new 4,5
-      expect(Point.distance_between point1,point2).to eq(5)
+      expect((Point.distance_between point1, point2).numeral).to eq(5)
+      expect((Point.distance_between point1, point2).unit).to eq("mm")
     end
   end
 end

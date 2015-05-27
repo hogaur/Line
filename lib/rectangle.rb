@@ -1,16 +1,16 @@
 class Rectangle
   attr_accessor :point1, :point2, :point3, :point4
 
-  def self.new_with_sides pivot, length, breadth
-    point1 = pivot
-    point2 = Point.new(pivot.x+length, pivot.y)
-    point3 = Point.new(pivot.x+length, pivot.y+breadth)
-    point4 = Point.new(pivot.x, pivot.y+breadth)
+  def self.new_with_sides length, breadth
+    point1 = Point.new 0, 0
+    point2 = Point.new(point1.x+length.numeral, point1.y)
+    point3 = Point.new(point1.x+length.numeral, point1.y+breadth.numeral)
+    point4 = Point.new(point1.x, point1.y+breadth.numeral)
     self.new point1, point2, point3, point4
   end
 
   def self.new point1, point2, point3, point4
-    if self.valid? point1, point2, point3, point4 
+    if self.valid? point1, point2, point3, point4
       super
     else return nil
     end
@@ -25,8 +25,8 @@ class Rectangle
     (
       (Line.orthogonal? line1, line2) and
       (Line.orthogonal? line3, line4) and
-      (line1.length == line3.length) and
-      (line2.length == line4.length)
+      (Measure.equal? line1.length, line3.length) and
+      (Measure.equal? line2.length, line4.length)
     )
   end
 
