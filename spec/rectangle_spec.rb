@@ -2,10 +2,9 @@ require 'spec_helper'
 describe 'Rectangle' do
 
   it 'should declare a rectangle with two sides' do
-    length = Measure.new "10 mm"
-    breadth = Measure.new "20 mm"
+    length = Measure.new 10, Unit::MM
+    breadth = Measure.new 20, Unit::MM
     rectangle= Rectangle.new_with_sides length, breadth
-    puts "#{rectangle}"
     expect(Point.equal? rectangle.point1, Point.new(0, 0)).to eq(true)
     expect(Point.equal? rectangle.point2, Point.new(10, 0)).to eq(true)
     expect(Point.equal? rectangle.point3, Point.new(10, 20)).to eq(true)
@@ -41,7 +40,7 @@ describe 'Rectangle' do
       point4 = Point.new 0, 4
       rectangle= Rectangle.new point1, point2, point3, point4
       expect(rectangle.area.numeral).to eq(8)
-      expect(rectangle.area.unit).to eq("mm2")
+      expect(rectangle.area.unit).to eq(Unit::MM2)
     end
   end
 
@@ -53,7 +52,7 @@ describe 'Rectangle' do
       point4 = Point.new 0, 4
       rectangle= Rectangle.new point1, point2, point3, point4
       expect(rectangle.perimeter.numeral).to eq(12)
-      expect(rectangle.perimeter.unit).to eq("mm")
+      expect(rectangle.perimeter.unit).to eq(Unit::MM)
     end
   end
 end

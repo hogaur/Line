@@ -1,16 +1,16 @@
 class Measure
-
   attr_accessor :numeral, :unit
-  def initialize measure_string
-    split_string = measure_string.split(" ")
-    @numeral = Float(split_string[0])
-    @unit = split_string[1]
+
+  def initialize numeral, unit
+    @numeral = numeral
+    @unit = unit
   end
+
   def to_mm
-    if @unit == "cm"
-      Measure.new("#{@numeral*10} mm")
-    elsif @unit == "m"
-      Measure.new("#{@numeral*1000} mm")
+    if @unit == Unit::CM
+      Unit::CM.to_mm.multiply_with_number @numeral
+    elsif @unit == Unit::M
+      Unit::M.to_mm.multiply_with_number @numeral
     else self
     end
   end
@@ -20,15 +20,11 @@ class Measure
   end
 
   def self.multiply measure1, measure2
-    if measure1.unit != measure2.unit
-      measure1 = measure1.to_mm
-      measure2 = measure2.to_mm
-    end
-    Measure.new "#{measure1.numeral * measure2.numeral} mm2"
+    (Unit.multiply measure1.unit, measure2.unit).multiply_with_number (measure1.numeral * measure2.numeral)
   end
 
   def multiply_with_number number
-    Measure.new "#{number * @numeral} #{@unit}"
+    Measure.new (@numeral * number), @unit
   end
 
   def self.add measure1, measure2
@@ -36,6 +32,6 @@ class Measure
       measure1 = measure1.to_mm
       measure2 = measure2.to_mm
     end
-    Measure.new "#{measure1.numeral + measure2.numeral} mm"
+    Measure.new measure1.numeral+measure2.numeral, measure1.unit
   end
 end

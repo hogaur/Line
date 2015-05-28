@@ -20,7 +20,7 @@ describe 'Line' do
     point2 = Point.new 4, 5
     line = Line.new point1, point2
     expect(line.length.numeral).to eq(5)
-    expect(line.length.unit).to eq("mm")
+    expect(line.length.unit).to eq(Unit::MM)
   end
 
   describe 'equality' do

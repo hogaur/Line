@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Square' do
   it 'should declare a square with a side' do
     pivot = Point.new 0,0
-    side = Measure.new "10 mm"
+    side = Measure.new 10, Unit::MM
     square = Square.new_with_sides side
     expect(Point.equal? square.point1, pivot).to eq(true)
     expect(Point.equal? square.point2, Point.new(pivot.x + side.numeral, pivot.y)).to eq(true)
@@ -40,7 +40,7 @@ describe 'Square' do
       point4 = Point.new 0, 2
       square= Square.new point1, point2, point3, point4
       expect(square.area.numeral).to eq(4)
-      expect(square.area.unit).to eq("mm2")
+      expect(square.area.unit).to eq(Unit::MM2)
     end
   end
 
@@ -52,7 +52,7 @@ describe 'Square' do
       point4 = Point.new 0, 2
       square= Square.new point1, point2, point3, point4
       expect(square.perimeter.numeral).to eq(8)
-      expect(square.perimeter.unit).to eq("mm")
+      expect(square.perimeter.unit).to eq(Unit::MM)
     end
   end
 end
