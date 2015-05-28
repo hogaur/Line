@@ -7,12 +7,7 @@ class Measure
   end
 
   def to_mm
-    if @unit == Unit::CM
-      Measure.new(10.0 * @numeral, Unit::MM)
-    elsif @unit == Unit::M
-      Measure.new(1000.0 * @numeral, Unit::MM)
-    else self
-    end
+      Measure.new( (@unit.to_mm @numeral), Unit::MM)
   end
 
   def self.equal? measure1, measure2
