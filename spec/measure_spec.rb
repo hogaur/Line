@@ -43,4 +43,33 @@ describe 'Measure' do
       expect(Measure.equal? length2, length1).to eq(false)
     end
   end
+
+  describe 'Multiplication' do
+    it 'should return multiplication of two Measure objects' do
+      length = Measure.new "1 cm"
+      breadth = Measure.new "10 mm"
+      area = Measure.multiply length, breadth
+      expect(area.numeral).to eq(100)
+      expect(area.unit).to eq("mm2")
+    end
+  end
+
+  describe 'Multiplication with a number' do
+    it 'should return a measure with a numberal multiplied by given number' do
+      measure = Measure.new "10 mm"
+      result = measure.multiply_with_number 2
+      expect(result.numeral == 20).to eq(true)
+      expect(result.unit == "mm").to eq(true)
+    end
+  end
+
+  describe 'Addition' do
+    it 'should return addition of two Measure objects' do
+      length1 = Measure.new "1 cm"
+      length2 = Measure.new "10 mm"
+      sum_length = Measure.add length1, length2
+      expect(sum_length.numeral == 20).to eq(true)
+      expect(sum_length.unit == "mm").to eq(true)
+    end
+  end
 end

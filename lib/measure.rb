@@ -18,4 +18,24 @@ class Measure
   def self.equal? measure1, measure2
     measure1.numeral == measure2.numeral and measure1.unit == measure2.unit
   end
+
+  def self.multiply measure1, measure2
+    if measure1.unit != measure2.unit
+      measure1 = measure1.to_mm
+      measure2 = measure2.to_mm
+    end
+    Measure.new "#{measure1.numeral * measure2.numeral} mm2"
+  end
+
+  def multiply_with_number number
+    Measure.new "#{number * @numeral} #{@unit}"
+  end
+
+  def self.add measure1, measure2
+    if measure1.unit != measure2.unit
+      measure1 = measure1.to_mm
+      measure2 = measure2.to_mm
+    end
+    Measure.new "#{measure1.numeral + measure2.numeral} mm"
+  end
 end

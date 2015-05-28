@@ -40,12 +40,12 @@ class Rectangle
   def area
     line1 = Line.new @point1, @point2
     line2 = Line.new @point2, @point3
-    return line1.length * line2.length
+    return Measure.multiply line1.length, line2.length
   end
 
   def perimeter
     line1 = Line.new @point1, @point2
     line2 = Line.new @point2, @point3
-    return 2 * (line1.length + line2.length)
+    return (Measure.add line1.length, line2.length).multiply_with_number 2
   end
 end
